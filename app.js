@@ -60,7 +60,7 @@ app.post("/", function(req, res) {
   })
 
   // send the data to the MailChimp server
-  //request.write(jsonData);
+  request.write(jsonData);
   request.end()
 });
 
@@ -69,7 +69,9 @@ app.post("/failure", function(req, res) {
   res.redirect("/");
 })
 
-app.listen(3000, function() {
+// let Heroku choose a port to run on
+// we can at the same time run on local host
+app.listen(process.env.PORT || 3000, function() {
   console.log("on port 3000");
 });
 
